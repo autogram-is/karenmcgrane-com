@@ -1,0 +1,25 @@
+[[plugins]]
+package = "netlify-plugin-cache"
+  [plugins.inputs]
+  # Optional (but highly recommended). Defaults to [".cache"].
+  paths = [".cache"]
+
+[build]
+    publish = "dist"
+
+[context.production]
+    command = "npm run build"
+
+[context.branch-deploy]
+    command = "npm run stage"
+
+[[redirects]]
+    from = "https://karenmcgrane.netlify.app/*"
+    to = "https://karenmcgrane.com/:splat"
+    status = 301
+    force = true
+
+[[redirects]]
+    from = "*"
+    to = "/404"
+    status = 404

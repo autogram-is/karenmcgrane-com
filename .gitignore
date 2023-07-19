@@ -131,9 +131,7 @@ dist
 
 package-lock.json
 
-dist
-data
-contentful
-
 .env
 .DS_Store
+.cache
+_dist
