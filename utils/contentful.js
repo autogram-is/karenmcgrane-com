@@ -3,7 +3,6 @@ require('dotenv').config()
 const { AssetCache } = require("@11ty/eleventy-fetch");
 const contentful = require('contentful')
 const resolveResponse = require('contentful-resolve-response')
-const _ = require('lodash');
 
 // Instantiates a Contentful client, and handles retrieval and
 // caching of the raw content. Using the caching mechanism
