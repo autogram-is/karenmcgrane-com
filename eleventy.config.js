@@ -26,24 +26,24 @@ module.exports = function (eleventyConfig) {
 		eleventyConfig.addPlugin(xmlFiltersPlugin)
 
     // Collections
-		Object.keys(collections).forEach((collectionName) => {
-				eleventyConfig.addCollection(collectionName, collections[collectionName])
-		})
+		//Object.keys(collections).forEach((collectionName) => {
+		//		eleventyConfig.addCollection(collectionName, collections[collectionName])
+		//})
 
 		// Filters
-		Object.keys(filters).forEach((filterName) => {
-				eleventyConfig.addFilter(filterName, filters[filterName])
-		})
+		//Object.keys(filters).forEach((filterName) => {
+		//		eleventyConfig.addFilter(filterName, filters[filterName])
+		//})
 
 		// Transforms
-		Object.keys(transforms).forEach((transformName) => {
-				eleventyConfig.addTransform(transformName, transforms[transformName])
-		})
+		//Object.keys(transforms).forEach((transformName) => {
+		//		eleventyConfig.addTransform(transformName, transforms[transformName])
+		//})
 
 		// Shortcodes
-		Object.keys(shortcodes).forEach((shortcodeName) => {
-				eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
-		})
+		//Object.keys(shortcodes).forEach((shortcodeName) => {
+		//		eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
+		//})
 
 		// Asset Watch Targets
 		eleventyConfig.addWatchTarget('./src/assets')

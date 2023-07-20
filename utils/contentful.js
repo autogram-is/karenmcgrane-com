@@ -17,8 +17,6 @@ const client = contentful.createClient({
   environment: process.env.CONTENTFUL_ENVIRONMENT
 })
 
-// Gets entity data for every saved Entry; these are used to generate
-// the site rather than relying on multiple API calls.
 const getContent = async function(flushCache = false) {
   let asset = new AssetCache("contentful_content")
 
@@ -26,18 +24,14 @@ const getContent = async function(flushCache = false) {
     return asset.getCachedValue()
   } else {
     return client.withoutUnresolvableLinks.getEntries({
-      limit: 2000,
+      limit: 1000,
       locale: 'en-US'
     }).then(response => {
       return asset.save(response.items, "json").then(() => response.items)
     })
-
-    // Do grouping here
   }
 }
 
-// Gets entity data for every saved Asset; these are used for lookups
-// and generation of the local asset cache.
 const getAssets = async function(flushCache = false) {
   let asset = new AssetCache("contentful_assets")
 
@@ -45,12 +39,24 @@ const getAssets = async function(flushCache = false) {
     return asset.getCachedValue()
   } else {
     return client.withoutUnresolvableLinks.getAssets({
-      limit: 2000,
+      limit: 1000,
       locale: 'en-US'
     }).then(response => {
-      return asset.save(response.items, "json").then(() => response)
+      return asset.save(response.items, "json").then(() => response.items)
     })
   }
 }
 
-module.exports = { client, getContent, getAssets }
+const getTags = async function(flushCache = false) {
+  let asset = new AssetCache("contentful_tags")
+
+  if(asset.isCacheValid("1d") && !flushCache) {
+    return asset.getCachedValue()
+  } else {
+    return client.withoutUnresolvableLinks.getTags().then(response => {
+      return asset.save(response.items, "json").then(() => response.items)
+    })
+  }
+}
+
+module.exports = { client, getContent, getAssets, getTags }
