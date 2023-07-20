@@ -31,18 +31,18 @@ module.exports = function (eleventyConfig) {
 		//})
 
 		// Filters
-		//Object.keys(filters).forEach((filterName) => {
-		//		eleventyConfig.addFilter(filterName, filters[filterName])
-		//})
+		Object.keys(filters).forEach((filterName) => {
+			eleventyConfig.addFilter(filterName, filters[filterName])
+		})
 
 		// Transforms
 		//Object.keys(transforms).forEach((transformName) => {
-		//		eleventyConfig.addTransform(transformName, transforms[transformName])
+		//	eleventyConfig.addTransform(transformName, transforms[transformName])
 		//})
 
 		// Shortcodes
 		//Object.keys(shortcodes).forEach((shortcodeName) => {
-		//		eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
+		//	eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
 		//})
 
 		// Asset Watch Targets

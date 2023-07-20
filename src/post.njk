@@ -1,0 +1,13 @@
+---
+layout: base
+pagination:
+    data: entries.post
+    size: 1
+    alias: post
+    addAllPagesToCollections : true
+permalink: /posts/{{ post.fields.slug }}/
+eleventyComputed:
+  title: "{{ post.fields.title }}"
+---
+
+{{ post | json | safe }}

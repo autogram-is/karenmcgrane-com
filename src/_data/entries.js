@@ -16,4 +16,5 @@ module.exports = async function () {
         }
       }
     ))
+    .then(items => _.groupBy(items, item => item.type))
 }
