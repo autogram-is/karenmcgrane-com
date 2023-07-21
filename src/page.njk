@@ -16,7 +16,7 @@ eleventyComputed:
 
 <ul>
   {% for item in collections.all %}
-  {% if item.data.document.type !== "page" %}
+  {% if item.data.document.type === "post" %}
   <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
   {% endif %}
   {% endfor %}

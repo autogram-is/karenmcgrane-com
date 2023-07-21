@@ -14,10 +14,10 @@
   <body>
       <header>
         {% include "nav.njk" %}
-        <h1>{{ title }}</h1>
+        <h1>{{ title | safe }}</h1>
       </header>
       <main>
-          <article>{{ content | safe }}</article>
+          <article id="{{ document.id }}">{{ content | safe }}</article>
       <footer>
           <hr>
           <p>

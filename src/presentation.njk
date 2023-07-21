@@ -8,6 +8,7 @@ pagination:
 permalink: /talks/{{ document.slug }}/
 eleventyComputed:
   title: "{{ document.title }}"
+  tags: {{ document.tags }}
 ---
 
 {{ document | json | safe }}
