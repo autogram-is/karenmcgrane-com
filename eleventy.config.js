@@ -18,8 +18,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addPlugin(pluginBundle);
     eleventyConfig.addPlugin(pluginWebc, {
       components: "_components/**/*.webc",
-      useTransform: false, // Adds an Eleventy WebC transform to process all HTML output
-      transformData: {}, // Additional global data used in the Eleventy WebC transform
+      useTransform: true, // Adds an Eleventy WebC transform to process all HTML output
     });
 
 		// Adds date_to_rfc822, date_to_xmlschema, and xml_escape filters
@@ -41,9 +40,9 @@ module.exports = function (eleventyConfig) {
 		//})
 
 		// Shortcodes
-		//Object.keys(shortcodes).forEach((shortcodeName) => {
-		//	eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
-		//})
+		Object.keys(shortcodes).forEach((shortcodeName) => {
+			eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
+		})
 
 		// Asset Watch Targets
 		eleventyConfig.addWatchTarget('./src/assets')

@@ -12,7 +12,7 @@ module.exports = async function () {
           createdAt: item.sys.createdAt,
           updatedAt: item.sys.updatedAt,
           revision: item.sys.revision,
-          fields: item.fields
+          ...item.fields
         }
       }
     ))

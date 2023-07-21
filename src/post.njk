@@ -3,11 +3,13 @@ layout: base
 pagination:
     data: entries.post
     size: 1
-    alias: post
+    alias: document
     addAllPagesToCollections : true
-permalink: /posts/{{ post.fields.slug }}/
+permalink: /{{ document.slug }}/
 eleventyComputed:
-  title: "{{ post.fields.title }}"
+  title: "{{ document.title }}"
 ---
 
-{{ post | json | safe }}
+{{ document.dek }}
+
+{{ document.body | toHtml | safe }}
