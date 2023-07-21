@@ -16,6 +16,8 @@ eleventyComputed:
 
 <ul>
   {% for item in collections.all %}
-  {%- if item.data.title %}<li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>{% endif %}
-{% endfor %}
+  {% if item.data.document.type !== "page" %}
+  <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
+  {% endif %}
+  {% endfor %}
 </ul>
