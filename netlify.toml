@@ -1,8 +1,8 @@
 [[plugins]]
-package = "netlify-plugin-cache"
-  [plugins.inputs]
-  # Optional (but highly recommended). Defaults to [".cache"].
-  paths = [".cache"]
+# package = "netlify-plugin-cache"
+#   [plugins.inputs]
+#   # Optional (but highly recommended). Defaults to [".cache"].
+#   paths = [".cache"]
 
 [build]
     publish = "dist"
