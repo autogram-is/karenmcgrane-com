@@ -8,20 +8,24 @@ pagination:
 permalink: /{{ document.slug }}/
 eleventyComputed:
   title: "{{ document.title }}"
+  isHome: document.home
 ---
 
 <div class="region content-main">
-	{% if document.home === false %}<h1 class="hed-lead">{{ document.title }}</h1>{% endif %}
-  <div class="group">
-    <p>{{ document.dek | safe }}</p>
-    {{ document.body | toHtml | safe }}
+  <div class="l-sole">
+    {% if isHome === false %}<h1 class="hed-lead">{{ document.title }}</h1>{% endif %}
+    <div class="group">
+      <p>{{ document.dek | safe }}</p>
+      {{ document.body | toHtml | safe }}
+
+      <ul>
+        {% for item in collections.all %}
+        {% if item.data.document.type === "post" %}
+        <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+    </div>
   </div>
 </div>
-
-<ul>
-  {% for item in collections.all %}
-  {% if item.data.document.type === "post" %}
-  <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
-  {% endif %}
-  {% endfor %}
-</ul>
