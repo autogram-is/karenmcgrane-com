@@ -4,25 +4,21 @@
 <head>
     <link rel="icon" href="https://via.placeholder.com/70x70">
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-
     <meta charset="utf-8">
     <meta name="description" content="My description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>{{ title }}</title>
 </head>
   <body>
-      <header>
-        {% include "nav.njk" %}
-        <h1>{{ title | safe }}</h1>
-      </header>
-      <main>
-          <article id="{{ document.id }}">{{ content | safe }}</article>
-      <footer>
-          <hr>
-          <p>
-              <small>Contact info</small>
-          </p>
-      </footer>
+    <header>
+      {% include "nav.njk" %}
+      <h1>{{ title | safe }}</h1>
+    </header>
+    <main>
+      <article id="{{ document.id }}">{{ content | safe }}</article>
+    </main>
+    <footer>
+      {% include "footer.njk" %}
+    </footer>
   </body>
 </html>
