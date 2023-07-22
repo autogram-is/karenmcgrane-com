@@ -1,7 +1,8 @@
-{% if slide.fields.image %}
-<img src="{{ slide.fields.image.fields.file.url }}" alt="{{ slide.fields.image.fields.file.title }}" />
-{% endif %}
-{% if slide.fields.transcript %}
-<div>{{ slide.fields.transcript | toHtml | safe }}</div>
-{% endif %}
-<hr />
+<li class="slide">
+  <p class="slide-img">
+    <img src="{{ slide.fields.image.fields.file.url }}" alt="{{ slide.fields.image.fields.file.title }}">
+  </p>
+  <div class="slide-content">
+    {% if slide.fields.transcript %}{{ slide.fields.transcript | toHtml | safe }}{% endif %}
+  </div>
+</li>
