@@ -20,6 +20,15 @@ eleventyComputed:
 
       <ul>
         {% for item in collections.all %}
+        {% if item.data.document.type === "presentation" %}
+        <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+
+      <ul>
+        {% for item in collections.all %}
         {% if item.data.document.type === "post" %}
         <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
         {% endif %}
