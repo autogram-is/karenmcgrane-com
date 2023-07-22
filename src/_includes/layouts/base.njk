@@ -9,7 +9,7 @@
     {% include "partials/site-header.njk" %}
 
 		<main class="site-content">
-      <article id="{{ document.id }}">{{ content | safe }}</article>
+    {% block content %}{{ content | safe }}{% endblock %}
     </main>
 
     {% include "partials/footer.njk" %}

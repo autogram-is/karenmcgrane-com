@@ -2,16 +2,13 @@
   <div class="site-mast">
     <nav>
       <ul class="nav-list">
-        {% for item in collections.all %}
-        {% if (item.data.document.type == 'page') %}
-        {% if (item.data.document.home !== true) %}
+        {% for item in collections.navigation %}
           <li class="nav-item">
             <a href="{{ item.url }}">
               {% navIcon item.data.title %}
               {{ item.data.title | safe }}
             </a>
           </li>
-        {% endif %}{% endif %}
         {% endfor %}
       </ul>
     </nav>

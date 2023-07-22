@@ -57,6 +57,8 @@ module.exports = function (eleventyConfig) {
 
 		// Layouts
 		eleventyConfig.addLayoutAlias('base',				'layouts/base.njk')
+		eleventyConfig.addLayoutAlias('page',				'layouts/page.njk')
+		eleventyConfig.addLayoutAlias('post',				'layouts/post.njk')
 
 		// Pass-through files
 		eleventyConfig.addPassthroughCopy('src/assets')

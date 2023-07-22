@@ -1,0 +1,11 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+<div class="region content-main">
+	{% if isHome !== true %}<h1 class="hed-lead">{{ document.title }}</h1>{% endif %}
+		<div class="group">
+			{{ content | safe }}
+		</div>
+	</div>
+</div>
+{% endblock %}

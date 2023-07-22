@@ -1,0 +1,12 @@
+{% extends "layouts/base.njk" %}
+
+<div class="region content-main">
+  <div class="l-sole">
+    <article class="group" datetime="{{ document.date }}">
+    <h1 class="hed-lead">{{ document.title }}</h1>
+      <div class="group">
+        {{ content | safe }}
+      </div>
+    </article>
+  </div>
+</div>
