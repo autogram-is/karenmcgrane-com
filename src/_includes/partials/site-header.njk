@@ -1,0 +1,21 @@
+<header class="region site-nav">
+  <div class="site-mast">
+    <nav>
+      <ul class="nav-list">
+        {% for item in collections.all %}
+        {% if (item.data.document.type == 'page') %}
+        {% if (item.data.document.home !== true) %}
+          <li class="nav-item">
+            <a href="{{ item.url }}">{{ item.data.title | safe }}</a>
+            <a href="{{ item.link }}">
+              {% navIcon item.data.title %}
+              {{ item.title }}
+            </a>
+          </li>
+        {% endif %}{% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+    <h1 class="logo"><a href="/">{{ site.tagline }}</a></h1>
+  </div>
+</header>

@@ -4,6 +4,7 @@ const pluginBundle = require("@11ty/eleventy-plugin-bundle")
 const pluginNavigation = require("@11ty/eleventy-navigation")
 const pluginWebc = require("@11ty/eleventy-plugin-webc");
 const xmlFiltersPlugin = require('eleventy-xml-plugin')
+const Image = require("@11ty/eleventy-img");
 
 const filters = require('./utils/filters.js')
 const collections = require('./utils/collections.js')

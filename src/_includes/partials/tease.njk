@@ -1,0 +1,17 @@
+<li class="teaser">
+  {% if item.thumbnail %}
+    <img src="{{ item.thumbnail }}" />
+  {% endif %}
+
+  <div class="teaser-inner">
+    <time datetime="{{ item.date }}">{{ item.date }}</time>
+
+    <h3 class="hed-teaser">
+      <a class="hed-teaser-link" href="{{ item.url }}">{{ item.title }}</a>
+    </h3>
+
+    <p>{{ item.dek }}
+      <a class="read-more" href="{{ item.url }}">Read more</a>
+    </p>
+  </div>
+</li>

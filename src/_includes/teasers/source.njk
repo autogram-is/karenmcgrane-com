@@ -1,9 +1,0 @@
-<div>
-  <h3><a href="{{ item.url }}">{{ item.name | safe }}</a></h3>
-  {% if item.blurb %}<p>{{ item.blurb | safe }}</p>{% endif %}
-  <p>
-    {% if item.author %}By {{ item.author }},{% endif %}
-    {% if item.publication %}{{ item.publication }},{% endif %}
-    <time datetime="{{ item.date }}">{{ item.date }}</time>
-  </p>
-</div>

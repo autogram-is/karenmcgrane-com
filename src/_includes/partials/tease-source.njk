@@ -1,0 +1,11 @@
+<li class="teaser">
+	<div class="teaser-inner">
+		<h3 class="hed-teaser"><a class="hed-teaser-link" href="{{ source.fields.url }}">{{ source.fields.title }}</a></h3>
+		{% if source.fields.blurb %}<p>{{ source.fields.blurb }}</p>{% endif %}
+		<p class="teaser-meta">
+      {% if source.fields.author %}By {{ source.fields.author }},{% endif %}
+      {% if source.fields.publication %}{{ source.fields.publication }},{% endif %}
+      <time datetime="{{ source.fields.date }}">{{ source.fields.date }}</time>
+    </p>
+	</div>
+</li>

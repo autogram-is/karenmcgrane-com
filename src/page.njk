@@ -10,9 +10,13 @@ eleventyComputed:
   title: "{{ document.title }}"
 ---
 
-{{ document.dek }}
-
-{{ document.body | toHtml | safe }}
+<div class="region content-main">
+	{% if document.home === false %}<h1 class="hed-lead">{{ document.title }}</h1>{% endif %}
+  <div class="group">
+    <p>{{ document.dek | safe }}</p>
+    {{ document.body | toHtml | safe }}
+  </div>
+</div>
 
 <ul>
   {% for item in collections.all %}

@@ -1,0 +1,18 @@
+<footer id="footer" class="region site-footer">
+  <p>
+    <a href="#www-karenmcgrane-com">Back to top</a>.
+    {% if document.home === false %}
+      <a href="/">Go home</a>.
+    {% endif %}
+  </p>
+
+  <div class="legalese">
+    <h2 class="hed-legalese">End user license agreement</h2>
+    <p><strong>Copyright © Karen McGrane.</strong> {{ site.elua }}</p>
+  </div>
+</footer>
+
+<!-- States referenced by `aria-describedby` -->
+<div id="wayfinding" class="squelch">
+  <span id="current-page">Current page</span>
+</div>

@@ -43,6 +43,7 @@
     "typogr": "^0.6.8"
   },
   "dependencies": {
+    "@11ty/eleventy-img": "^3.1.0",
     "ndjson": "^2.0.0"
   }
 }
