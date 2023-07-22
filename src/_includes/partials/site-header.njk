@@ -6,10 +6,9 @@
         {% if (item.data.document.type == 'page') %}
         {% if (item.data.document.home !== true) %}
           <li class="nav-item">
-            <a href="{{ item.url }}">{{ item.data.title | safe }}</a>
-            <a href="{{ item.link }}">
+            <a href="{{ item.url }}">
               {% navIcon item.data.title %}
-              {{ item.title }}
+              {{ item.data.title | safe }}
             </a>
           </li>
         {% endif %}{% endif %}
