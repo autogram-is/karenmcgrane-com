@@ -9,7 +9,6 @@ const contentful = require('contentful')
 // and avoid thrashing the API with lots of queries, even during
 // design/dev cycles with lots of iteration.
 
-
 const getClient = function() {
   return contentful.createClient({
     space: process.env.CONTENTFUL_SPACE,
@@ -29,22 +28,33 @@ const getContent = async function(flushCache = false) {
       limit: 1000,
       locale: 'en-US'
     })
-    .then(response => response.items.map(
-      item => {
-        return {
-          type: item.sys.contentType.sys.id,
-          id: item.sys.id,
-          tags: item.metadata.tags.map(tag => tag.sys.id),
-          createdAt: item.sys.createdAt,
-          updatedAt: item.sys.updatedAt,
-          revision: item.sys.revision,
-          ...item.fields
-        }
-      }
-    ))
+    .then(response => response.items.map(flattenEntry))
     .then(entries => {
       return asset.save(entries, "json").then(() => entries)
     })
+  }
+}
+
+const flattenEntry = function (entry) {
+  return {
+    type: entry.sys.contentType.sys.id,
+    id: entry.sys.id,
+    tags: entry.metadata.tags.map(tag => tag.sys.id),
+    createdAt: entry.sys.createdAt,
+    updatedAt: entry.sys.updatedAt,
+    revision: entry.sys.revision,
+    ...entry.fields
+  }
+}
+
+const flattenAsset = function (asset) {
+  return {
+    id: asset.sys.id,
+    tags: asset.metadata.tags.map(tag => tag.sys.id),
+    createdAt: asset.sys.createdAt,
+    updatedAt: asset.sys.updatedAt,
+    revision: asset.sys.revision,
+    ...asset.fields
   }
 }
 
@@ -59,18 +69,7 @@ const getAssets = async function(flushCache = false) {
       limit: 1000,
       locale: 'en-US'
     })
-      .then(response => response.items.map(
-        asset => {
-          return {
-            id: asset.sys.id,
-            tags: asset.metadata.tags.map(tag => tag.sys.id),
-            createdAt: asset.sys.createdAt,
-            updatedAt: asset.sys.updatedAt,
-            revision: asset.sys.revision,
-            fields: asset.fields
-          }
-        }
-      ))
+      .then(response => response.items.map(flattenAsset))
       .then(assets => {
         return asset.save(assets, "json").then(() => assets)
       })
@@ -100,4 +99,4 @@ const getTags = async function(flushCache = false) {
   }
 }
 
-module.exports = { getClient, getContent, getAssets, getTags }
+module.exports = { getClient, getContent, getAssets, flattenEntry, flattenAsset, getTags }
