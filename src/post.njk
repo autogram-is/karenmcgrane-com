@@ -1,14 +1,9 @@
 ---
 layout: base
 pagination:
-    data: entries.posts
-    size: 1
-    alias: document
-    addAllPagesToCollections : true
-permalink: "{{ document | permalink }}"
-eleventyComputed:
-  title: "{{ document.title }}"
-  tags: {{ document.tags }}
+  data: entries.posts
+  size: 1
+  alias: document
 ---
 <div class="region content-main">
   <div class="l-sole">

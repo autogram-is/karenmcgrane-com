@@ -1,14 +1,9 @@
 ---
 layout: page
 pagination:
-    data: entries.simplePages
-    size: 1
-    alias: document
-    addAllPagesToCollections : true
-permalink: "{{ document | permalink }}"
-eleventyComputed:
-  title: "{{ document.title }}"
-  isHome: document.home
+  data: entries.simplePages
+  size: 1
+  alias: document
 ---
 <p>{{ document.dek | safe }}</p>
 

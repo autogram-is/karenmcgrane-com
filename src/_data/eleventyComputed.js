@@ -7,12 +7,17 @@ module.exports = {
     if (data.document) return data.document
 
     if (data.id) {
-      const content = filters.byId(await contentful.getContent(), data.id);
-      if (content) return content;
+      const content = filters.byId(await contentful.getContent(), data.id)
+      if (content) return content
     }
   },
 
   title: data => {
     data.title ?? data.document?.hed
+  },
+
+  permalink: data => {
+    if (data.permalink) return data.permalink
+    if (data.document) return filters.permalink(data.document)
   },
 };

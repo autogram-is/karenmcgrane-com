@@ -1,14 +1,9 @@
 ---
 layout: base
 pagination:
-    data: entries.presentations
-    size: 1
-    alias: document
-    addAllPagesToCollections : true
-permalink: "{{ document | permalink }}"
-eleventyComputed:
-  title: "{{ document.title }}"
-  tags: {{ document.tags }}
+  data: entries.presentations
+  size: 1
+  alias: document
 ---
 <div class="region content-main">
   <article class="group" datetime="{{ document.date }}">

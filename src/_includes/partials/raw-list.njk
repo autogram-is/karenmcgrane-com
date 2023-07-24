@@ -1,15 +1,14 @@
 <ul>
-  {% for item in collections.all %}
-  {% if item.data.document.type === "presentation" %}
-  <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
+  {% for item in entries.presentations %}
+  <li><a data-id="{{ item.id }}" href="{{ item | permalink }}">{{ item.title | safe }}</a></li>
   {% endif %}
   {% endfor %}
 </ul>
 
 <ul>
-  {% for item in collections.all %}
+  {% for item in entries.posts %}
   {% if item.data.document.type === "post" %}
-  <li><a data-id="{{ item.data.document.id }}" href="{{ item.url }}">{{ item.data.title | safe }}</a></li>
+  <li><a data-id="{{ item.id }}" href="{{ item | permalink }}">{{ item.title | safe }}</a></li>
   {% endif %}
   {% endfor %}
 </ul>
