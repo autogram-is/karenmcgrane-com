@@ -31,6 +31,19 @@ const getContent = async function(flushCache = false) {
     }).then(response => {
       return asset.save(response.items, "json").then(() => response.items)
     })
+    .then(items => items.map(
+      item => {
+        return {
+          type: item.sys.contentType.sys.id,
+          id: item.sys.id,
+          tags: item.metadata.tags.map(tag => tag.sys.id),
+          createdAt: item.sys.createdAt,
+          updatedAt: item.sys.updatedAt,
+          revision: item.sys.revision,
+          ...item.fields
+        }
+      }
+    ))
   }
 }
 
@@ -47,6 +60,18 @@ const getAssets = async function(flushCache = false) {
     }).then(response => {
       return asset.save(response.items, "json").then(() => response.items)
     })
+    .then(assets => assets.map(
+      asset => {
+        return {
+          id: asset.sys.id,
+          tags: asset.metadata.tags.map(tag => tag.sys.id),
+          createdAt: asset.sys.createdAt,
+          updatedAt: asset.sys.updatedAt,
+          revision: asset.sys.revision,
+          fields: asset.fields
+        }
+      }
+    ))
   }
 }
 
@@ -60,6 +85,15 @@ const getTags = async function(flushCache = false) {
     return client.withoutUnresolvableLinks.getTags().then(response => {
       return asset.save(response.items, "json").then(() => response.items)
     })
+    .then(tags => tags.map(
+      tag => {
+        return {
+          id: tag.sys.id,
+          name: tag.name,
+          visible: tag.sys.visibility === 'public',
+        }
+      }
+    ))
   }
 }
 
