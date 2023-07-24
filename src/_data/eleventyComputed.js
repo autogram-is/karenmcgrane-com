@@ -6,8 +6,8 @@ module.exports = {
   document: async data => {
     if (data.document) return data.document
 
-    if (data.id) {
-      const content = filters.byId(await contentful.getContent(), data.id)
+    if (data.contentId) {
+      const content = filters.byId(await contentful.getContent(), data.contentId)
       if (content) return content
     }
   },
