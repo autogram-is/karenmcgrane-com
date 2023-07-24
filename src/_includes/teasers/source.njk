@@ -1,4 +1,5 @@
-<li class="teaser">
+{%- extends 'teasers/base.twig' %}
+{%- block content %}
 	<div class="teaser-inner">
 		<h3 class="hed-teaser"><a class="hed-teaser-link" href="{{ source.fields.url }}">{{ source.fields.title }}</a></h3>
 		{% if source.fields.blurb %}<p>{{ source.fields.blurb }}</p>{% endif %}
@@ -8,4 +9,4 @@
       <time datetime="{{ source.fields.date }}">{{ source.fields.date }}</time>
     </p>
 	</div>
-</li>
+{% endblock -%}

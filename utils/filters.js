@@ -1,8 +1,5 @@
-const { getContent, getAssets, getTags } = require("./contentful.js")
-
 const { documentToHtmlString } = require('@contentful/rich-text-html-renderer')
 const { documentToPlainTextString } = require('@contentful/rich-text-plain-text-renderer')
-
 
 module.exports = {
   /**
@@ -33,7 +30,17 @@ module.exports = {
    * specific if it exists.
    */
   byId: function(content, contentId) {
+    if (!Array.isArray(content)) return undefined
     return content.find(item => item.id === contentId)
+  },
+
+  /**
+   * Given an array of formatted Contentful entities, return the one with a
+   * particular slug if it exists.
+   */
+  bySlug: function(content, slug) {
+    if (!Array.isArray(content)) return undefined
+    return content.find(item => item?.slug === slug)
   },
 
   /**
@@ -42,6 +49,7 @@ module.exports = {
    * current page.
    */
   excludeId: function(content, contentId) {
+    if (!Array.isArray(content)) return []
     return content.filter(item => item.id !== contentId)
   },
 
@@ -50,6 +58,16 @@ module.exports = {
    * specific tag.
    */
   withTag: function(content, tag) {
+    if (!Array.isArray(content)) return []
     return content.filter(item => item.tags.includes(tag))
+  },
+
+  /**
+   * Given an array of formatted Contentful entities, return entities with a
+   * specific tag.
+   */
+  withType: function(content, contentType) {
+    if (!Array.isArray(content)) return []
+    return content.filter(item => item.type === contentType)
   },
 }

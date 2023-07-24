@@ -1,7 +1,8 @@
 <li class="teaser">
-  {% if item.thumbnail %}
-    <img src="{{ item.thumbnail }}" />
-  {% endif %}
+  {%- block content %}
+  {%- if item.thumbnail %}
+  <img src="{{ item.thumbnail }}" />
+  {% endif -%}
 
   <div class="teaser-inner">
     <time datetime="{{ item.date }}">{{ item.date }}</time>
@@ -14,4 +15,5 @@
       <a class="read-more" href="{{ item.url }}">Read more</a>
     </p>
   </div>
+  {%- endblock %}
 </li>

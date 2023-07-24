@@ -18,12 +18,4 @@
   https://globster.xyz for testing
 */
 
-module.exports = {
-  navigation: (collectionApi) => {
-    return collectionApi.getAll()
-      .filter(item => item.data?.document?.nav !== undefined)
-      .sort(function(a, b) {
-        return a.data.document.nav  - b.data.document.nav; // sort by date - ascending
-      });
-  }
-};
+module.exports = { };
