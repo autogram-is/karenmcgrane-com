@@ -12,6 +12,8 @@ module.exports = async function () {
 
     simplePages: filters.withType(content, 'page').filter(page => page.custom !== true),
 
+    books: filters.withType(content, 'book'),
+
     posts: filters.withType(content, 'post'),
 
     presentations: filters.withType(content, 'presentation'),
@@ -20,6 +22,10 @@ module.exports = async function () {
       .filter(page => page.nav !== undefined)
       .sort(function(a, b) {
         return item.nav - item.nav; // sort by nav order - ascending
-      })
+      }),
+
+    articles: [],
+
+    sources: [],
   }
 }
