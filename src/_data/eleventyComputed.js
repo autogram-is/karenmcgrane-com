@@ -4,6 +4,8 @@ const contentful = require("../../utils/contentful.js")
 module.exports = {
 
   document: async data => {
+    if (data.document) return data.document
+
     if (data.id) {
       const content = filters.byId(await contentful.getContent(), data.id);
       if (content) return content;
@@ -11,6 +13,6 @@ module.exports = {
   },
 
   title: data => {
-    data?.title ?? data?.document?.hed
-  }
+    data.title ?? data.document?.hed
+  },
 };

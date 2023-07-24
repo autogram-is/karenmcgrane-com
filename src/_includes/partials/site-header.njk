@@ -4,7 +4,7 @@
       <ul class="nav-list">
         {% for item in entries.navigation %}
           <li class="nav-item">
-            <a href="{{ item.url }}">
+            <a href="{{ item | permalink }}">
               {% navIcon item.title %}
               {{ item.title | safe }}
             </a>
