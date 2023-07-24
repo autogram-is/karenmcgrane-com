@@ -70,4 +70,36 @@ module.exports = {
     if (!Array.isArray(content)) return []
     return content.filter(item => item.type === contentType)
   },
+
+  /**
+   * Generates the permalink for a particular content item; this allows
+   * us to build page paths before they're processed by Eleventy and
+   * consistently figure out what a given content ID's permalink would be.
+   *
+   * Page/Post permalinks are usually `{{ document | permalink }}`, while
+   * the OpenGraph preview file would be `{{ document | permalink }}og.html`.
+   *
+   * Pages with *no* underlying API-derived content won't have the data
+   * needed for this filter to work, and will need hard-coded permalinks.
+   *
+   * Entry types that aren't supposed to be output (slides, citations, etc)
+   * will have 'false' for a permalink.
+   *
+   * @returns URL path with leading and trailing slashes, or `false` for no
+   * permalink.
+   */
+  permalink: function(document) {
+
+    if (document.home === true) return '/'
+
+    switch (document.type) {
+      case 'page':
+      case 'post':
+        return `/${document.slug}/`;
+        break
+      case 'presentation':
+        return `/talks/${document.slug}/`;
+        break
+    }
+  }
 }

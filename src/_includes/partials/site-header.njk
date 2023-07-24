@@ -5,8 +5,8 @@
         {% for item in entries.navigation %}
           <li class="nav-item">
             <a href="{{ item.url }}">
-              {% navIcon item.data.title %}
-              {{ item.data.title | safe }}
+              {% navIcon item.title %}
+              {{ item.title | safe }}
             </a>
           </li>
         {% endfor %}

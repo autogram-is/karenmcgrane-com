@@ -28,10 +28,8 @@ const getContent = async function(flushCache = false) {
     return client.withoutUnresolvableLinks.getEntries({
       limit: 1000,
       locale: 'en-US'
-    }).then(response => {
-      return asset.save(response.items, "json").then(() => response.items)
     })
-    .then(items => items.map(
+    .then(response => response.items.map(
       item => {
         return {
           type: item.sys.contentType.sys.id,
@@ -44,6 +42,9 @@ const getContent = async function(flushCache = false) {
         }
       }
     ))
+    .then(entries => {
+      return asset.save(entries, "json").then(() => entries)
+    })
   }
 }
 
@@ -57,21 +58,22 @@ const getAssets = async function(flushCache = false) {
     return client.withoutUnresolvableLinks.getAssets({
       limit: 1000,
       locale: 'en-US'
-    }).then(response => {
-      return asset.save(response.items, "json").then(() => response.items)
     })
-    .then(assets => assets.map(
-      asset => {
-        return {
-          id: asset.sys.id,
-          tags: asset.metadata.tags.map(tag => tag.sys.id),
-          createdAt: asset.sys.createdAt,
-          updatedAt: asset.sys.updatedAt,
-          revision: asset.sys.revision,
-          fields: asset.fields
+      .then(response => response.items.map(
+        asset => {
+          return {
+            id: asset.sys.id,
+            tags: asset.metadata.tags.map(tag => tag.sys.id),
+            createdAt: asset.sys.createdAt,
+            updatedAt: asset.sys.updatedAt,
+            revision: asset.sys.revision,
+            fields: asset.fields
+          }
         }
-      }
-    ))
+      ))
+      .then(assets => {
+        return asset.save(assets, "json").then(() => assets)
+      })
   }
 }
 
@@ -82,18 +84,19 @@ const getTags = async function(flushCache = false) {
   if(asset.isCacheValid("1d") && !flushCache) {
     return asset.getCachedValue()
   } else {
-    return client.withoutUnresolvableLinks.getTags().then(response => {
-      return asset.save(response.items, "json").then(() => response.items)
-    })
-    .then(tags => tags.map(
-      tag => {
-        return {
-          id: tag.sys.id,
-          name: tag.name,
-          visible: tag.sys.visibility === 'public',
+    return client.withoutUnresolvableLinks.getTags()
+      .then(response => response.items.map(
+        tag => {
+          return {
+            id: tag.sys.id,
+            name: tag.name,
+            visible: tag.sys.visibility === 'public',
+          }
         }
-      }
-    ))
+      ))
+      .then(tags => {
+        return asset.save(tags, "json").then(() => tags)
+      })
   }
 }
 

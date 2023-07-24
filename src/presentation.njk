@@ -5,7 +5,7 @@ pagination:
     size: 1
     alias: document
     addAllPagesToCollections : true
-permalink: /talks/{{ document.slug }}/
+permalink: "{{ document | permalink }}"
 eleventyComputed:
   title: "{{ document.title }}"
   tags: {{ document.tags }}

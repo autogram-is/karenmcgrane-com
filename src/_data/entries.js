@@ -5,12 +5,12 @@ const _ = require('lodash');
 module.exports = async function () {
   const content = await contentful.getContent();
 
-  return {
+  const output = {
     all: content,
 
     pages: filters.withType(content, 'page'),
 
-    simplePages: filters.withType(content, 'page').filter(page => page.custom !== true),
+    simplePages: filters.withType(content, 'page').filter(page => page?.custom !== true),
 
     books: filters.withType(content, 'book'),
 
@@ -21,11 +21,13 @@ module.exports = async function () {
     navigation: filters.withType(content, 'page')
       .filter(page => page.nav !== undefined)
       .sort(function(a, b) {
-        return item.nav - item.nav; // sort by nav order - ascending
+        return a.nav - b.nav; // sort by nav order - ascending
       }),
 
     articles: [],
 
     sources: [],
   }
+
+  return output;
 }
