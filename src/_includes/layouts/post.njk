@@ -28,12 +28,13 @@
         {% block body %}{{ content | safe }}{% endblock %}
       </section>
 
-      {% if document.citations %}
+      {% if document.citations.length > 0 %}
       <section class="article-citations">
         <h2 class="hed-section-sub">Citations</h2>
 
         <ul class="teaser-list">
           {% for source in document.citations %}
+            {% set item = source | flatten %}
             {% include 'teasers/source.njk' %}
           {% endfor %}
         </ul>

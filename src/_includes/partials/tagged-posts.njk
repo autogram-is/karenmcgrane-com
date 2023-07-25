@@ -1,7 +1,10 @@
+{% set remainder = (taggedItems | length) - teaserLimit %}
 <section class="group">
   <header class="header-more">
     <h2 class="hed-section-sub">{{ tag.name }}</h2>
-    <a class="link-more" href="/category/{{ tag.id }}/">Browse {{ (taggedItems | length) - teaserLimit }} more</a>
+    {%- if remainder > 0 %}
+    <a class="link-more" href="/category/{{ tag.id }}/">Browse {{ remainder }} more</a>
+    {% endif -%}
   </header>
   <ol class="teaser-list">
     {% for item in taggedItems | limit(teaserLimit) %}{% include 'teasers/'~item.type~'.njk' %}{% endfor %}
