@@ -23,11 +23,11 @@ module.exports = {
   /**
    * Description placeholder
    */
-  buildImage(imageField, width = 480) {
+  buildImage(imageAsset, width = 480) {
     return `<img class='u-max-full-width'
-      srcset="https:${imageField.fields.file.url}?w=${width}&fm=webp&q=80&fit=fill&f=faces ${width}w,
-      https:${imageField.fields.file.url}?w=${width*2}&fm=webp&q=80&fit=fill&f=faces ${width*2}w" sizes="(max-width: 600px) ${width}px,${width*2}px"
-      src="https:${imageField.fields.file.url}?w=${width*2}&fit=fill&f=faces"
-      alt="${ imageField.fields.title }" loading="lazy">`;
+      srcset="https:${imageAsset.fields.file.url}?w=${width}&fm=webp&q=80&fit=fill&f=faces ${width}w,
+      https:${imageAsset.fields.file.url}?w=${width*2}&fm=webp&q=80&fit=fill&f=faces ${width*2}w" sizes="(max-width: 600px) ${width}px,${width*2}px"
+      src="https:${imageAsset.fields.file.url}?w=${width*2}&fit=fill&f=faces"
+      alt="${ imageAsset.fields.title }" loading="lazy">`;
   }
 }

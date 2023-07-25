@@ -1,6 +1,8 @@
 const { documentToHtmlString } = require('@contentful/rich-text-html-renderer')
 const { documentToPlainTextString } = require('@contentful/rich-text-plain-text-renderer')
-const { flattenEntry } = require('./contentful.js')
+const { BLOCKS, MARKS, INLINES } = require("@contentful/rich-text-types")
+const { flattenEntry, flattenAsset } = require('./contentful.js')
+const { buildImage } = require('./shortcodes.js')
 
 module.exports = {
   /**
@@ -16,7 +18,26 @@ module.exports = {
    * Render a Contentful Rich Text field as HTML.
    */
   toHtml: function(value) {
-    return documentToHtmlString(value)
+    const options = {
+      renderMark: {
+        [MARKS.BOLD]: text => `<strong>${text}</strong>`,
+        [MARKS.ITALIC]: text => `<em>${text}</em>`,
+      },
+      renderNode: {
+        // This is ugly and assumes there's no formatting to the linked asset. That's bad.
+        [INLINES.ASSET_HYPERLINK]: (node, next) => {
+          return `<a href="https:${node.data.target.fields.file.url}" target="_new" />${node.content[0].value}</a>`
+        },
+        [INLINES.ENTRY_HYPERLINK]: (node, next) => {
+          return `<a href="https:${node.data.target.fields.file.url}"/>${node.content[0].value}</a>`
+        },
+        [BLOCKS.EMBEDDED_ASSET]: (node) => {
+          return `<p>${buildImage(node.data.target)}</p>`
+        }
+      },
+    }
+
+    return documentToHtmlString(value, options)
   },
 
   /**
