@@ -13,13 +13,13 @@
 [context.branch-deploy]
     command = "npm run stage"
 
-[[redirects]]
-    from = "https://karenmcgrane.netlify.app/*"
-    to = "https://karenmcgrane.com/:splat"
-    status = 301
-    force = true
+#[[redirects]]
+#    from = "https://karen-mcgrane.netlify.app/*"
+#    to = "https://karenmcgrane.com/:splat"
+#    status = 301
+#    force = true
 
-[[redirects]]
-    from = "*"
-    to = "/404"
-    status = 404
+#[[redirects]]
+#    from = "*"
+#    to = "/404"
+#    status = 404
