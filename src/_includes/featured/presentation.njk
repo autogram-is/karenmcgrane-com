@@ -1,0 +1,12 @@
+<li class="featured-item is-priority">
+  {% if item.primary %}
+    {% buildImage item.primary %}
+  {% elif item.slides[0] %}
+    {% buildImage item.slides[0].fields.image %}
+  {% endif %}
+  <div class="featured-content">
+    <h2><a class="hed-featured" href="{{ item | permalink }}">{{ item.title | safe }}</a></h2>
+    <p>{{ item.dek | safe }} <a class="read-more" href="{{ item | permalink }}">Read more</a></p>
+    {% include 'featured/meta.njk' %}
+  </div>
+</li>

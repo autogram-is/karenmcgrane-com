@@ -1,0 +1,7 @@
+<li class="featured-item">
+  <div class="featured-content">
+    <h2><a class="hed-featured" href="{{ item | permalink }}">{{ item.title }}</a></h2>
+    <p>{{ item.dek }} <a class="read-more" href="{{ item | permalink }}">Read more</a></p>
+  </div>
+  {% include 'featured/meta.njk' %}
+</li>

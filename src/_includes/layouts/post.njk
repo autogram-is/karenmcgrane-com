@@ -1,12 +1,46 @@
 {% extends "layouts/base.njk" %}
-
+{% block content %}
 <div class="region content-main">
-  <div class="l-sole">
+  {% if fullWidth !== true %}<div class="l-sole">{% endif %}
     <article class="group" datetime="{{ document.date }}">
-    <h1 class="hed-lead">{{ document.title }}</h1>
-      <div class="group">
-        {{ content | safe }}
-      </div>
+      <footer>
+        <div class="article-meta">
+          {% if document.originalSource %}
+          {% set source = document.originalSource | flatten %}
+          <p>{{ metaPhrase }} <a href="{{ source.url }}">{{ source.publication }}</a>{% if source.date %}<time>{{ source.date | friendlyDate }}</time>{% endif %}</p>
+          {% else %}
+          <p>Published on <time>{{ document.date | friendlyDate }}</time></p>
+          {% endif %}
+        </div>
+      </footer>
+
+      <header>
+        <h2 class="hed-article-title">{{ document.title | safe }}</h2>
+        {% if document.dek %}<p class="article-lead">{{ document.dek | safe }}</p>{% endif %}
+      </header>
+
+      <section class="article-content">
+        {% if document.primary %}
+        {% if fullWidth !== true %}
+        <p class="lead-image full">{% buildImage document.primary %}</p>
+        {% endif %}
+        {% endif %}
+        {% block body %}{{ content | safe }}{% endblock %}
+      </section>
+
+      {% if document.citations %}
+      <section class="article-citations">
+        <h2 class="hed-section-sub">Citations</h2>
+
+        <ul class="teaser-list">
+          {% for source in document.citations %}
+            {% include 'teasers/source.njk' %}
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
     </article>
-  </div>
+  {% if fullWidth !== true %}</div>{% endif %}
 </div>
+{% endblock %}

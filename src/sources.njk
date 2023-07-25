@@ -1,0 +1,32 @@
+---
+layout: base
+contentId: bndTsrY76SWxJg31RGDOr
+---
+{% block content %}
+<div class="region content-main">
+  <h1 class="hed-lead">{{ document.title | safe }}</h1>
+  {% if document.dek %}<p>{{ document.dek | safe }}</p>{% endif %}
+  {% set teaserLimit = 3 %}
+
+  <div class="l-50-50">
+    {% set tag = tags | byId('interaction-design-history') %}
+		{% set taggedItems = entries.sources | withTag(tag.id) %}
+    {% include 'partials/tagged-posts.njk' %}
+
+    {% set tag = tags | byId('personal-growth') %}
+		{% set taggedItems = entries.sources | withTag(tag.id) %}
+    {% include 'partials/tagged-posts.njk' %}
+
+    {% set tag = tags | byId('useful-stats') %}
+		{% set taggedItems = entries.sources | withTag(tag.id) %}
+    {% include 'partials/tagged-posts.njk' %}
+
+    {% set tag = tags | byId('lorem-ipsum') %}
+		{% set taggedItems = entries.sources | withTag(tag.id) %}
+    {% include 'partials/tagged-posts.njk' %}
+  </div>
+
+  {% include 'partials/topic-list.njk' %}
+
+</div>
+{% endblock %}

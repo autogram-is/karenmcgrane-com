@@ -1,0 +1,18 @@
+---
+layout: base
+contentId: 4ONdFn1EkWGTds5OlwZSde
+---
+{% block content %}
+<div class="region content-main">
+  <h1 class="hed-lead">{{ document.title | safe }}</h1>
+  {% if document.dek %}<p>{{ document.dek | safe }}</p>{% endif %}
+
+  <div class="l-50-50">
+    {% for book in document.curated %}
+    {% set item = book | flatten %}
+    {% include 'featured/'~item.type~'.njk' ignore missing %}
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}

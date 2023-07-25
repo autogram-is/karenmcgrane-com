@@ -1,12 +1,31 @@
-{% extends "layouts/base.njk" %}
+{% extends "layouts/post.njk" %}
+{% set fullWidth = true %}
+{% set metaPhrase = 'Presented at' %}
 
-<div class="region content-main">
-  <div class="l-sole">
-    <article class="group" datetime="{{ document.date }}">
-    <h1 class="hed-lead">{{ document.title }}</h1>
-      <div class="group">
-        {{ content | safe }}
-      </div>
-    </article>
+{% if document.originalSource %}
+{% set source = document.originalSource | flatten %}
+{% block meta %}
+<p>Presented at <a href="{{ source.url }}">{{ source.publication }}</a>{% if source.date %}<time>{{ source.date | friendlyDate }}</time>{% endif %}</p>
+{% endblock %}
+{% endif %}
+
+{% block body %}
+  {% if document.video %}
+  <h3>Video</h3>
+  <div class="embed-video">
+    <iframe src="{{ document.video }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
   </div>
-</div>
+  {% endif %}
+
+  {% if document.slideshare %}
+  <h3>Slides</h3>
+  <iframe src="{{ document.slideshare }}" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+  {% endif %}
+
+  <h3>Transcript</h3>
+  <ol class="slide-list">
+  {% for slide in document.slides %}
+    {% include "partials/slide.njk" %}
+  {% endfor %}
+  </ol>
+{% endblock %}

@@ -1,0 +1,8 @@
+<span class="meta-featured">
+{% if item.originalSource %}
+  {% set source = item.originalSource | flatten %}
+  <a href="{{ source.url }}">{{ source.publication }}</a>, <time datetime="{{ source.date }}">{{ source.date | friendlyDate }}</time>
+{% else %}
+  <time datetime="{{ item.date }}">{{ item.date | friendlyDate }}</time>
+{% endif %}
+</span>

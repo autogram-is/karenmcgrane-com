@@ -1,0 +1,10 @@
+---
+layout: base
+contentId: 1spv0YzrrawZc0SMPC0rFl
+---
+<ol class="region list-featured">
+  <li class="featured-item is-priority"><p>{{ document.dek | safe }}</p></li>
+  {% for item in entries.presentations %}
+  {% include 'featured/presentation.njk' %}
+  {% endfor %}
+</ol>

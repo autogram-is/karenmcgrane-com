@@ -1,5 +1,4 @@
-{%- extends 'teasers/base.njk' %}
-{%- block content %}
+<li class="teaser">
 	<div class="teaser-inner">
 		<h3 class="hed-teaser">
 			<a class="hed-teaser-link" href="{{ item | permalink }}">{{ item.hed }}</a>
@@ -8,4 +7,4 @@
 			<a class="read-more" href="{{ item | permalink }}">Read more</a>
 		</p>
 	</div>
-{% endblock -%}
+</li>

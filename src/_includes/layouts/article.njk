@@ -1,0 +1,5 @@
+{% extends "layouts/post.njk" %}
+{% set metaPhrase = 'Originally created for' %}
+{% block body %}
+{{ document.body | toHtml | safe }}
+{% endblock %}

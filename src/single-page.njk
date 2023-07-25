@@ -1,0 +1,12 @@
+---
+layout: page
+pagination:
+  data: entries.simplePages
+  size: 1
+  alias: document
+---
+{{ document.body | toHtml | safe }}
+{% for featured in document.curated %}
+{% set item = featured | flatten %}
+{% include 'featured/'~item.type~'.njk' ignore missing %}
+{% endfor %}

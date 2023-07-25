@@ -1,0 +1,17 @@
+<div class="group-full">
+	<h2 class="hed-section-sub">Additional Topics</h2>
+	<ol class="sources-count-list">
+    {% for category in categories %}
+			<li>
+				<a href="/category/{{ category.id }}/">
+					<dl class="source-count">
+						<dt>{{ category.name }}</dt>
+						<dd>
+							{{ entries.all | withTag(category.id) | length }}
+						</dd>
+					</dl>
+				</a>
+			</li>
+		{% endfor %}
+	</ol>
+</div> <!-- /end .group -->

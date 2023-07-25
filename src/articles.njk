@@ -1,0 +1,24 @@
+---
+layout: base
+contentId: 79IHemhowCELP4mqPPmAjb
+---
+{% block content %}
+<div class="region content-main">
+  <h1 class="hed-lead">{{ document.title | safe }}</h1>
+  {% if document.dek %}<p>{{ document.dek | safe }}</p>{% endif %}
+  {% set teaserLimit = 10 %}
+
+  <div class="l-50-50">
+    {% set tag = tags | byId('by-karen') %}
+		{% set taggedItems = entries.posts %}
+    {% include 'partials/tagged-posts.njk' %}
+
+    {% set tag = tags | byId('about-karen') %}
+		{% set taggedItems = entries.aboutKaren %}
+    {% include 'partials/tagged-posts.njk' %}
+  </div>
+
+  {% include 'partials/topic-list.njk' %}
+
+</div>
+{% endblock %}

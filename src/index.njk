@@ -1,8 +1,14 @@
 ---
-layout: page
+layout: base
 contentId: 4ROMYHKHl1pAy4Pyj8x2Cd
 ---
+<ol class="region list-featured">
+  <li class="featured-item is-priority">{{ document.body | toHtml | safe }}</li>
+</ol>
 
-<p>{{ document.dek | safe }}</p>
-
-{{ document.body | toHtml | safe }}
+<ol class="region list-featured">
+  {% for featured in document.curated %}
+  {% set item = featured | flatten %}
+  {% include 'featured/'~item.type~'.njk' ignore missing %}
+  {% endfor %}
+</ol>

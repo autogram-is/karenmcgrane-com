@@ -1,0 +1,15 @@
+<li class="teaser">
+  <div class="teaser-inner">
+    <h3 class="hed-teaser"><a class="hed-teaser-link" href="{{ item | permalink }}">{{ item.title }}</a></h3>
+    <p>{{ item.dek }}</p>
+
+    <p class="teaser-meta">
+      {% if item.originalSource %}
+      {% set source = item.originalSource | flatten %}
+      <cite>{{ source.publication }}</cite>, <time datetime="{{ source.date }}">{{ source.date | friendlyDate }}</time>
+      {% else %}
+      <time datetime="{{ item.date }}">{{ item.date | friendlyDate }}</time>
+      {% endif %}
+    </p>
+  </div>
+</li>

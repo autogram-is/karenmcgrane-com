@@ -1,5 +1,6 @@
 const { documentToHtmlString } = require('@contentful/rich-text-html-renderer')
 const { documentToPlainTextString } = require('@contentful/rich-text-plain-text-renderer')
+const { flattenEntry } = require('./contentful.js')
 
 module.exports = {
   /**
@@ -66,9 +67,18 @@ module.exports = {
    * Given an array of formatted Contentful entities, return entities with a
    * specific tag.
    */
-  withType: function(content, contentType) {
+  ofType: function(content, contentType) {
     if (!Array.isArray(content)) return []
-    return content.filter(item => item.type === contentType)
+    const type = Array.isArray(contentType) ? contentType : [contentType]
+    return content.filter(item => type.includes(item.type))
+  },
+
+  /**
+   * Given an array of formatted Contentful entities, limit the list to a specific length.
+   */
+  limit: function(content, entries) {
+    if (!Array.isArray(content)) return []
+    return content.slice(0, entries)
   },
 
   /**
@@ -101,5 +111,11 @@ module.exports = {
         return `/talks/${document.slug}/`;
         break
     }
-  }
+  },
+
+  friendlyDate: function(incomingDate) {
+    return new Date(incomingDate).toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"})
+  },
+
+  flatten: flattenEntry
 }

@@ -1,0 +1,13 @@
+<div class="group">
+  <header>
+    <h2 class="hed-section-sub">{{ item.title }}</h2>
+  </header>
+  <section class="book">
+    {% buildImage item.cover %}
+    <div class="book-desc">
+      <p>{{ item.body | toHtml | safe }}</p>
+    </div>
+
+    <p class="cap"><a class="link-more" href="{{ item.link }}">Buy now</a></p>
+  </section>
+</div>

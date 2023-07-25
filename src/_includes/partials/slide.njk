@@ -1,6 +1,6 @@
 <li class="slide">
   <p class="slide-img">
-    <img src="{{ slide.fields.image.fields.file.url }}" alt="{{ slide.fields.image.fields.file.title }}">
+    {% buildImage slide.fields.image %}
   </p>
   <div class="slide-content">
     {% if slide.fields.transcript %}{{ slide.fields.transcript | toHtml | safe }}{% endif %}

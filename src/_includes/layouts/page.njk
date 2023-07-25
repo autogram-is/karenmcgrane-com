@@ -2,8 +2,9 @@
 
 {% block content %}
 <div class="region content-main">
-	{% if isHome !== true %}<h1 class="hed-lead">{{ document.title }}</h1>{% endif %}
+	<h1 class="hed-lead">{{ document.title }}</h1>
 		<div class="group">
+      {% if document.dek %}<p>{{ document.dek | safe }}</p>{% endif %}
 			{{ content | safe }}
 		</div>
 	</div>

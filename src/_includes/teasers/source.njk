@@ -1,12 +1,11 @@
-{%- extends 'teasers/base.njk' %}
-{%- block content %}
-	<div class="teaser-inner">
-		<h3 class="hed-teaser"><a class="hed-teaser-link" href="{{ source.fields.url }}">{{ source.fields.title }}</a></h3>
-		{% if source.fields.blurb %}<p>{{ source.fields.blurb }}</p>{% endif %}
+<li class="teaser">
+  <div class="teaser-inner">
+		<h3 class="hed-teaser"><a class="hed-teaser-link" href="{{ item.url }}">{{ item.title }}</a></h3>
+		{% if item.blurb %}<p>{{ item.blurb }}</p>{% endif %}
 		<p class="teaser-meta">
-      {% if source.fields.author %}By {{ source.fields.author }},{% endif %}
-      {% if source.fields.publication %}{{ source.fields.publication }},{% endif %}
-      <time datetime="{{ source.fields.date }}">{{ source.fields.date }}</time>
+      {% if item.author %}By {{ item.author }}{% endif %}
+      {%- if item.publication %}{% if item.author %},{% endif %} {{ item.publication }}{% endif %}
+      {%- if item.date %}{% if item.publication or item.author %}, {% endif %}<time datetime="{{ item.date }}">{{ item.date | friendlyDate }}</time>{% endif %}
     </p>
 	</div>
-{% endblock -%}
+</li>

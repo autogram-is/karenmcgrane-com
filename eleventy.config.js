@@ -56,9 +56,12 @@ module.exports = function (eleventyConfig) {
 		}
 
 		// Layouts
-		eleventyConfig.addLayoutAlias('base',				'layouts/base.njk')
-		eleventyConfig.addLayoutAlias('page',				'layouts/page.njk')
-		eleventyConfig.addLayoutAlias('post',				'layouts/post.njk')
+		eleventyConfig.addLayoutAlias('base',         'layouts/base.njk')
+		eleventyConfig.addLayoutAlias('page',         'layouts/page.njk')
+		eleventyConfig.addLayoutAlias('post',         'layouts/post.njk')
+		eleventyConfig.addLayoutAlias('article',      'layouts/article.njk')
+		eleventyConfig.addLayoutAlias('presentation', 'layouts/presentation.njk')
+		eleventyConfig.addLayoutAlias('category',     'layouts/category.njk')
 
 		// Pass-through files
 		eleventyConfig.addPassthroughCopy('src/assets')

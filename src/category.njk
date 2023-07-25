@@ -1,0 +1,10 @@
+---
+layout: category
+pagination:
+  data: tags
+  size: 1
+  alias: tag
+permalink: '/category/{{ tag.id }}/'
+eleventyComputed:
+  title: '{{ tag.name }}'
+---

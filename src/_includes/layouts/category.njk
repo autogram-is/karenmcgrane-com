@@ -1,0 +1,21 @@
+{% extends "layouts/base.njk" %}
+{% block content %}
+<div class="region content-main">
+  <div class="l-sole">
+    <div class="group">
+      <h1 class="hed-lead">{{ title }}</h1>
+      <ol class="teaser-list">
+        {% for item in entries.all | withTag(tag.id) %}
+        {% include 'teasers/'~item.type~'.njk' %}
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="region content-main">
+  <div class="group-full">
+{% include 'partials/topic-list.njk' %}
+  </div>
+</div>
+{% endblock %}
