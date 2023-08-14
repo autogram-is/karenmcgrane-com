@@ -4,6 +4,37 @@ const { BLOCKS, MARKS, INLINES } = require("@contentful/rich-text-types")
 const { flattenEntry, flattenAsset } = require('./contentful.js')
 const { buildImage } = require('./shortcodes.js')
 
+/**
+* Generates the permalink for a particular content item; this allows
+* us to build page paths before they're processed by Eleventy and
+* consistently figure out what a given content ID's permalink would be.
+*
+* Page/Post permalinks are usually `{{ document | permalink }}`, while
+* the OpenGraph preview file would be `{{ document | permalink }}og.html`.
+*
+* Pages with *no* underlying API-derived content won't have the data
+* needed for this filter to work, and will need hard-coded permalinks.
+*
+* Entry types that aren't supposed to be output (slides, citations, etc)
+* will have 'false' for a permalink.
+*
+* @returns URL path with leading and trailing slashes, or `false` for no
+* permalink.
+*/
+function permalink(document) {
+  if (document.home === true) return '/'
+
+  switch (document.type) {
+    case 'page':
+    case 'post':
+      return `/${document.slug}/`;
+      break
+    case 'presentation':
+      return `/talks/${document.slug}/`;
+      break
+  }
+}
+
 module.exports = {
   /**
    * Debug filter that outputs the JSON-stringified structure of any variable.
@@ -29,7 +60,7 @@ module.exports = {
           return `<a href="https:${node.data.target.fields.file.url}" target="_new" />${node.content[0].value}</a>`
         },
         [INLINES.ENTRY_HYPERLINK]: (node, next) => {
-          return `<a href="https:${node.data.target.fields.file.url}"/>${node.content[0].value}</a>`
+          return `<a href="${permalink(flattenEntry(node.data.target))}"/>${node.content[0].value}</a>`
         },
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
           return `<p>${buildImage(node.data.target)}</p>`
@@ -102,37 +133,7 @@ module.exports = {
     return content.slice(0, entries)
   },
 
-  /**
-   * Generates the permalink for a particular content item; this allows
-   * us to build page paths before they're processed by Eleventy and
-   * consistently figure out what a given content ID's permalink would be.
-   *
-   * Page/Post permalinks are usually `{{ document | permalink }}`, while
-   * the OpenGraph preview file would be `{{ document | permalink }}og.html`.
-   *
-   * Pages with *no* underlying API-derived content won't have the data
-   * needed for this filter to work, and will need hard-coded permalinks.
-   *
-   * Entry types that aren't supposed to be output (slides, citations, etc)
-   * will have 'false' for a permalink.
-   *
-   * @returns URL path with leading and trailing slashes, or `false` for no
-   * permalink.
-   */
-  permalink: function(document) {
-
-    if (document.home === true) return '/'
-
-    switch (document.type) {
-      case 'page':
-      case 'post':
-        return `/${document.slug}/`;
-        break
-      case 'presentation':
-        return `/talks/${document.slug}/`;
-        break
-    }
-  },
+  permalink,
 
   friendlyDate: function(incomingDate) {
     return new Date(incomingDate).toLocaleDateString('en-us', { year:"numeric", month:"long", day:"numeric"})
