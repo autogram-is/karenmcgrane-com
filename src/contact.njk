@@ -1,0 +1,18 @@
+---
+layout: base
+contentId: 3i240aHaTp4ZCriuEYrFCR
+---
+{% block content %}
+<div class="region content-main">
+  <div class="l-sole">
+    <div class="group">
+      <h2 class="hed-section-sub">{{ document.title | safe }}</h2>
+      {% if document.dek %}<p>{{ document.dek | safe }}</p>{% endif %}
+
+      {% include 'partials/form.njk' %}
+
+      {{ document.body | toHtml | safe }}
+    </div>
+  </div>
+</div>
+{% endblock %}
