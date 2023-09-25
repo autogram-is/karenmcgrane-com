@@ -8,7 +8,7 @@
 
   <div class="legalese">
     <h2 class="hed-legalese">End user license agreement</h2>
-    <p><strong>Copyright © Karen McGrane.</strong> {{ site.elua }}</p>
+    <p>{% if site.copyright %}<strong>{{ site.copyright }}</strong> {% endif %}{{ site.elua }}</p>
   </div>
 </footer>
 
