@@ -3,7 +3,14 @@ layout: base
 contentId: 4ROMYHKHl1pAy4Pyj8x2Cd
 ---
 <ol class="region list-featured">
-  <li class="featured-item is-priority">{{ document.body | toHtml | safe }}</li>
+  <li class="featured-item is-priority">
+    {% if document.primary %}
+    <div class="featured-content">{% buildImage document.primary %}</div>
+    <div>{{ document.body | toHtml | safe }}</div>
+    {% else %}
+    {{ document.body | toHtml | safe }}
+    {% endif %}
+  </li>
 </ol>
 
 <ol class="region list-featured">
